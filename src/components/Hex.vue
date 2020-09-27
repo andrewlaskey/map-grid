@@ -1,20 +1,12 @@
 <template>
-  <div class="hex" @click="updateHexItem">
-    <img
-      v-if="item.type === 'mountain'"
-      src="../assets/mountain.svg"
-      alt="mountain"
-    />
-    <img
-      v-else-if="item.type === 'grass'"
-      src="../assets/grass.svg"
-      alt="grass"
-    />
-    <img v-else src="../assets/water.svg" alt="water" />
+  <div class="hex" :class="{ 'is-odd': isEven }" @click="updateHexItem">
+    <img :src="imgSrc" :alt="item.type" />
   </div>
 </template>
 
 <script>
+import { toRefs, computed } from 'vue'
+
 export default {
   emits: ['click-hex'],
   props: {
@@ -27,6 +19,36 @@ export default {
         }
       },
     },
+    isEven: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
+    const { item } = toRefs(props)
+
+    const imgSrc = computed(() => {
+      const rand = Math.floor(Math.random() * 18)
+      let src = `/images/ocean/tile_ocean_${rand}.png`
+
+      switch (item.value.type) {
+        case 'grass':
+          src = `/images/grassland/tile_grassland_${rand}.png`
+          break
+        case 'forest':
+          src = `/images/forest/tile_forest_${rand}.png`
+          break
+        case 'mountain':
+          src = `/images/mountain/tile_mountain_${rand}.png`
+          break
+      }
+
+      return src
+    })
+
+    return {
+      imgSrc,
+    }
   },
   methods: {
     updateHexItem() {
@@ -38,7 +60,18 @@ export default {
 
 <style lang="scss" scoped>
 .hex {
-  width: 200px;
-  height: 200px;
+  position: relative;
+  flex-shrink: 0;
+  margin-right: 132px;
+  width: 132px;
+  height: 80px;
+}
+
+.hex img {
+  width: 220px;
+  position: absolute;
+  left: -42px;
+  bottom: -12px;
+  pointer-events: none;
 }
 </style>

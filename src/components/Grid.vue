@@ -20,7 +20,7 @@ export default {
   props: {
     itemsPerRows: {
       type: Number,
-      default: 10,
+      default: 5,
     },
   },
 
@@ -69,6 +69,9 @@ export default {
             item.type = 'grass'
             break
           case 'grass':
+            item.type = 'forest'
+            break
+          case 'forest':
             item.type = 'mountain'
             break
           default:

@@ -17,14 +17,13 @@ export default {
 body {
   margin: 0;
   padding: 0;
+  background: #454545;
 }
 
 #app {
   margin: 0;
-  padding: 20px;
-  width: 100vw;
-  height: 100vh;
+  padding: 5rem;
   overflow: scroll;
-  background: darkblue;
+  background: #454545;
 }
 </style>
