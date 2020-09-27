@@ -25,5 +25,6 @@ body {
   padding: 5rem;
   overflow: scroll;
   background: #454545;
+  perspective: 300px;
 }
 </style>

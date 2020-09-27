@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     updateHexItem() {
-      this.$emit('click-hex', { id: this.item.id })
+      this.$emit('click-hex', { key: this.item.key })
     },
   },
 }

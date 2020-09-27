@@ -48,16 +48,6 @@ export default {
         })
       })
 
-    // const totalItems = 100
-
-    // for (let i = 0; i < totalItems; i++) {
-    //   grid.value.push({
-    //     id: 'abcd-' + i,
-    //     type: 'water',
-    //     gridIndex: i,
-    //   })
-    // }
-
     const rows = computed(() => {
       let row = 0
       return grid.value.reduce(
@@ -85,8 +75,8 @@ export default {
     this.getGrid()
   },
   methods: {
-    updateHexItem({ id }) {
-      const item = this.grid.find((item) => item.id === id)
+    updateHexItem({ key }) {
+      const item = this.grid.find((item) => item.key === key)
 
       if (item) {
         switch (item.type) {
@@ -114,3 +104,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.hex-grid {
+  transform: rotateX(5deg);
+}
+</style>

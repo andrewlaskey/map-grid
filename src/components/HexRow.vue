@@ -2,7 +2,7 @@
   <div class="hex-row" :class="{ 'is-odd': isEven }">
     <hex
       v-for="(item, index) in row"
-      :key="item.id"
+      :key="item.key"
       :item="item"
       :is-even="index % 2 === 0"
       @click-hex="updateHexItem"
@@ -28,8 +28,8 @@ export default {
     },
   },
   methods: {
-    updateHexItem({ id }) {
-      this.$emit('click-hex', { id })
+    updateHexItem({ key }) {
+      this.$emit('click-hex', { key })
     },
   },
 }
