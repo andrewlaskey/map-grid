@@ -1,5 +1,6 @@
 <template>
   <div class="hex-grid">
+    <!-- <button @click="setupFirebase">Update</button> -->
     <hex-row
       v-for="(row, index) in rows"
       :key="index"
@@ -13,6 +14,7 @@
 <script>
 import HexRow from './HexRow'
 import { ref, toRefs, computed } from 'vue'
+import { db } from '../plugin/db'
 
 export default {
   components: { HexRow },
@@ -24,18 +26,37 @@ export default {
     },
   },
 
+  data() {
+    return {
+      gridItems: [],
+    }
+  },
+
   setup(props) {
     const { itemsPerRows } = toRefs(props)
-    const grid = ref([])
+    let grid = ref([])
 
-    const totalItems = 100
+    const getGrid = async () =>
+      await db.ref('defaultGrid').on('value', (snapshot) => {
+        const items = snapshot.val()
 
-    for (let i = 0; i < totalItems; i++) {
-      grid.value.push({
-        id: 'abcd-' + i,
-        type: 'water',
+        grid.value = Object.entries(items).map(([key, value]) => {
+          return {
+            key,
+            ...value,
+          }
+        })
       })
-    }
+
+    // const totalItems = 100
+
+    // for (let i = 0; i < totalItems; i++) {
+    //   grid.value.push({
+    //     id: 'abcd-' + i,
+    //     type: 'water',
+    //     gridIndex: i,
+    //   })
+    // }
 
     const rows = computed(() => {
       let row = 0
@@ -56,8 +77,12 @@ export default {
 
     return {
       grid,
+      getGrid,
       rows,
     }
+  },
+  mounted() {
+    this.getGrid()
   },
   methods: {
     updateHexItem({ id }) {
@@ -78,6 +103,13 @@ export default {
             item.type = 'water'
         }
       }
+
+      db.ref(`defaultGrid/${item.key}`).update({ type: item.type })
+    },
+    setupFirebase() {
+      this.grid.forEach((item) => {
+        db.ref('defaultGrid').push(item)
+      })
     },
   },
 }

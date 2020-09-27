@@ -65,6 +65,9 @@ export default {
   margin-right: 132px;
   width: 132px;
   height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hex img {
@@ -73,5 +76,12 @@ export default {
   left: -42px;
   bottom: -12px;
   pointer-events: none;
+}
+
+.hex span {
+  position: relative;
+  color: #fff;
+  text-align: center;
+  font-size: 1.5em;
 }
 </style>
