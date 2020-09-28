@@ -57,6 +57,7 @@ button {
   transition: opacity 0.25s ease;
 
   &.is-hidden {
+    display: none;
     opacity: 0;
   }
 }
