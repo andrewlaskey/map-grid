@@ -28,18 +28,18 @@ export default {
     const { item } = toRefs(props)
 
     const imgSrc = computed(() => {
-      const rand = Math.floor(Math.random() * 18)
-      let src = `/images/ocean/tile_ocean_${rand}.png`
+      const level = item.value.level || 0
+      let src = `/images/ocean/tile_ocean_${level}.png`
 
       switch (item.value.type) {
         case 'grass':
-          src = `/images/grassland/tile_grassland_${rand}.png`
+          src = `/images/grassland/tile_grassland_${level}.png`
           break
         case 'forest':
-          src = `/images/forest/tile_forest_${rand}.png`
+          src = `/images/forest/tile_forest_${level}.png`
           break
         case 'mountain':
-          src = `/images/mountain/tile_mountain_${rand}.png`
+          src = `/images/mountain/tile_mountain_${level}.png`
           break
       }
 

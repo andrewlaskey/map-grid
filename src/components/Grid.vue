@@ -77,6 +77,7 @@ export default {
   methods: {
     updateHexItem({ key }) {
       const item = this.grid.find((item) => item.key === key)
+      const rand = Math.floor(Math.random() * 18)
 
       if (item) {
         switch (item.type) {
@@ -94,7 +95,7 @@ export default {
         }
       }
 
-      db.ref(`defaultGrid/${item.key}`).update({ type: item.type })
+      db.ref(`defaultGrid/${item.key}`).update({ type: item.type, level: rand })
     },
     setupFirebase() {
       this.grid.forEach((item) => {

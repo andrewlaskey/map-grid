@@ -1,14 +1,19 @@
 <template>
-  <grid />
+  <div class="grid-wrap">
+    <grid />
+  </div>
+  <info-display />
 </template>
 
 <script>
 import Grid from './components/Grid.vue'
+import InfoDisplay from './components/InfoDisplay.vue'
 
 export default {
   name: 'App',
   components: {
     Grid,
+    InfoDisplay,
   },
 }
 </script>
@@ -23,8 +28,10 @@ body {
 #app {
   margin: 0;
   padding: 5rem;
-  overflow: scroll;
   background: #454545;
+}
+
+.grid-wrap {
   perspective: 300px;
 }
 </style>
