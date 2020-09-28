@@ -23,6 +23,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    row: {
+      type: Number,
+      default: 0,
+    },
+    col: {
+      type: Number,
+      default: 0,
+    },
   },
   setup(props) {
     const { item } = toRefs(props)

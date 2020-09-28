@@ -5,6 +5,7 @@
       v-for="(row, index) in rows"
       :key="index"
       :row="row"
+      :rowIndex="index"
       :is-even="index % 2 === 0"
       @click-hex="updateHexItem"
     />

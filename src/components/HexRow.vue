@@ -4,6 +4,8 @@
       v-for="(item, index) in row"
       :key="item.key"
       :item="item"
+      :col="index"
+      :row="rowIndex"
       :is-even="index % 2 === 0"
       @click-hex="updateHexItem"
     />
@@ -25,6 +27,10 @@ export default {
     row: {
       type: Array,
       default: () => [],
+    },
+    rowIndex: {
+      type: Number,
+      default: 0,
     },
   },
   methods: {
